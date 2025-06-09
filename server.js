@@ -14,11 +14,13 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Database connection
 const db = mysql.createConnection({
-  host: 'localhost',
+  host: '127.0.0.1',  // หรือ 'localhost'
   user: 'root',
-  password: '', // ปรับตามจริง
-  database: 'ble_web' // ตั้งชื่อฐานข้อมูลให้ตรง
+  password: '',       // ใส่รหัสผ่านจริง
+  database: 'ble_web',
+  port: 3306
 });
+
 
 db.connect((err) => {
   if (err) throw err;
