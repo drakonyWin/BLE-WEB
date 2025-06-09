@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MFU Floor Viewer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      background-color: #969696;
+    }
+
+    .sidebar {
+      width: 250px;
+      padding: 20px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 0 10px 10px 0;
+      border: 3px solid #970000;
+    }
+
+    .logo {
+      width: 100%;
+      padding: 10px;
+      background: white;
+      text-align: center;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 100%;
+      max-width: 200px;
+    }
+
+    .floor-button {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      background-color: #970000;
+      border: none;
+      border-radius: 5px;
+      color: goldenrod;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .floor-button:hover {
+      background-color: goldenrod;
+      color: #970000;
+    }
+
+    .floor-button.selected {
+      color: yellow;
+    }
+
+    .main-content {
+      flex: 1;
+      position: relative;
+      background-image: url('<%= backgroundImage %>');
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      border: 3px solid #970000;
+    }
+
+    .view-button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #970000;
+      color: goldenrod;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .view-button:hover {
+      background-color: goldenrod;
+      color: #970000;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo">
+        <img src="/img/img1logo.png" alt="MFU Logo" />
+      </div>
+
+      <% for (let i = 1; i <= 9; i++) { %>
+        <button class="floor-button" onclick="location.href='/floor<%= i %>'">FLOOR <%= i %></button>
+      <% } %>
+
+    </div>
+
+    <div class="main-content">
+      <button class="view-button" onclick="location.href='<%= viewLink %>'">VIEW</button>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.floor-button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+      });
+    });
+  </script>
+</body>
+
+</html>
